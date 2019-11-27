@@ -1,14 +1,19 @@
 .grid {
   display: flex;
   margin: 0 auto;
-  width: 400px;
+  width: 380px;
   flex-wrap: wrap;
 }
 
 .cell {
+  box-sizing: border-box;
   border: 1px solid black;
   width: 20px;
   height: 20px;
   margin-right: -1px;
   margin-bottom: -1px;
+}
+
+.cell.active {
+  background-color: black;
 }

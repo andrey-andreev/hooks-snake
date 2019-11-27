@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import HooksSnake from "./HooksSnake";
+import HooksSnake from "./components/HooksSnake";
 
 const App: React.FC = () => {
   return (
