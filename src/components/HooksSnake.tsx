@@ -1,11 +1,28 @@
 import React, { useState, useEffect } from "react";
 
 import { IPosition, Direction } from "../types";
-import { squareSide, grid } from "../constants";
+import { squareSide, initialGrid } from "../constants";
 import Grid from "./Grid";
 import "./HooksSnake.css";
 
+const getNextPosition = (
+  position: IPosition,
+  direction: Direction
+): IPosition => {
+  switch (direction) {
+    case Direction.Up:
+      return { x: position.x, y: position.y - 1 };
+    case Direction.Down:
+      return { x: position.x, y: position.y + 1 };
+    case Direction.Left:
+      return { x: position.x - 1, y: position.y };
+    case Direction.Right:
+      return { x: position.x + 1, y: position.y };
+  }
+};
+
 const HooksSnake: React.FC = () => {
+  const [grid, setGrid] = useState<IPosition[]>(initialGrid);
   const [position, setPosition] = useState<IPosition>({
     x: squareSide - 1,
     y: squareSide / 2 - 1
@@ -13,10 +30,19 @@ const HooksSnake: React.FC = () => {
   const [direction, setDirection] = useState<Direction>(Direction.Up);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log("This will run after 1 second!");
-    }, 500);
-    return () => clearTimeout(timer);
+    //check if nextPostition
+    // move
+    // -
+    // die
+    // - end of grid
+    // - byte my self
+    // -
+    // -
+    // const interval = setInterval(() => {
+    //   const nextPosition = getNextPosition(position, direction);
+    //   console.log("This will run every second!");
+    // }, 500);
+    // return () => clearInterval(interval);
   }, []);
 
   return (
