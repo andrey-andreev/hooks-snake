@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { IPosition } from "../types";
 import "./Grid.css";
 
@@ -24,8 +24,9 @@ interface ICell {
   className?: string;
 }
 
-const Cell: React.FC<ICell> = ({ active, className }) => {
+const Cell: React.FC<ICell> = memo(({ active, className }) => {
+  console.log("cell render");
   return <div className={`cell ${className} ${active ? "active" : ""}`} />;
-};
+});
 
 export default Grid;

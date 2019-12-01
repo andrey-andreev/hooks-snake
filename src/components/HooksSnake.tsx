@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import { IPosition, Direction } from "../types";
+import { IPosition, Grid, Direction, Timer } from "../types";
 import { squareSide, initialGrid } from "../constants";
-import Grid from "./Grid";
+import GridComponent from "./Grid";
 import "./HooksSnake.css";
 
 const getNextPosition = (
@@ -22,33 +22,32 @@ const getNextPosition = (
 };
 
 const HooksSnake: React.FC = () => {
-  const [grid, setGrid] = useState<IPosition[]>(initialGrid);
+  const [grid, setGrid] = useState<Grid>(initialGrid);
   const [position, setPosition] = useState<IPosition>({
-    x: squareSide - 1,
-    y: squareSide / 2 - 1
+    x: squareSide / 2 - 1,
+    y: squareSide - 1
   });
   const [direction, setDirection] = useState<Direction>(Direction.Up);
+  const [timer, setTimer] = useState<Timer>(0);
 
   useEffect(() => {
-    //check if nextPostition
-    // move
-    // -
-    // die
-    // - end of grid
-    // - byte my self
-    // -
-    // -
-    // const interval = setInterval(() => {
-    //   const nextPosition = getNextPosition(position, direction);
-    //   console.log("This will run every second!");
-    // }, 500);
-    // return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      setTimer(timer => timer + 1);
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
+
+  useEffect(() => {
+    const nextPostition = getNextPosition(position, direction);
+    setPosition(nextPostition);
+  }, [timer]);
 
   return (
     <div className="hooks-snake">
       <h3>Hooks Snake game</h3>
-      <Grid grid={grid} position={position} />
+      <GridComponent grid={grid} position={position} />
     </div>
   );
 };
