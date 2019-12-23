@@ -7,7 +7,7 @@
 
 .cell {
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid gray;
   width: 20px;
   height: 20px;
   margin-right: -1px;

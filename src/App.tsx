@@ -21,6 +21,7 @@ const App: React.FC = () => {
         </a>
       </header> */}
       <HooksSnake />
+      {/* TODO: instructions */}
     </div>
   );
 };
